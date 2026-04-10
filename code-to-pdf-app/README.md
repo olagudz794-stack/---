@@ -1,69 +1,91 @@
-# Конвертер кода в PDF
+# Конвертер кода в PDF для Vercel
 
-Простое веб-приложение для конвертации файлов с кодом в PDF формат.
+Веб-приложение для конвертации файлов с кодом в PDF формат, оптимизированное для развертывания на платформе Vercel.
 
 ## Возможности
 
-- Поддержка множества языков программирования (Python, JavaScript, TypeScript, Java, C/C++, C#, Go, Rust, Ruby, PHP, Bash, HTML, CSS, JSON, XML, Markdown, SQL)
-- Drag-and-drop загрузка файлов
-- Автоматическое определение кодировки файла
-- Сохранение форматирования кода в PDF
-- Работа локально без отправки данных в интернет
-
-## Развертывание на Render.com
-
-### Способ 1: Использование Docker (рекомендуется)
-
-1. Запушьте этот репозиторий на GitHub
-2. Зарегистрируйтесь на [Render.com](https://render.com)
-3. Создайте новый сервис → "Web Service"
-4. Подключите ваш GitHub репозиторий
-5. Выберите опцию "Docker" в качестве среды выполнения
-6. Render автоматически обнаружит Dockerfile и развернет приложение
-
-### Способ 2: Использование Python среды
-
-1. Запушьте этот репозиторий на GitHub
-2. Зарегистрируйтесь на [Render.com](https://render.com)
-3. Создайте новый сервис → "Web Service"
-4. Подключите ваш GitHub репозиторий
-5. Выберите среду выполнения "Python 3"
-6. Build Command: `pip install -r requirements.txt`
-7. Start Command: `python app.py`
-
-## Локальный запуск
-
-### С помощью Docker:
-
-```bash
-docker build -t code-to-pdf .
-docker run -p 8080:8080 code-to-pdf
-```
-
-### Без Docker:
-
-```bash
-pip install -r requirements.txt
-python app.py
-```
-
-Приложение будет доступно по адресу http://localhost:8080
-
-## Использование
-
-1. Перетащите файл с кодом в область загрузки или нажмите для выбора файла
-2. Нажмите кнопку "Конвертировать в PDF"
-3. Скачайте полученный PDF файл
-
-## Структура проекта
-
-- `app.py` - основной файл приложения Flask
-- `templates/index.html` - HTML шаблон веб-интерфейса
-- `requirements.txt` - зависимости Python
-- `Dockerfile` - конфигурация Docker для развертывания
-- `render.yaml` - конфигурация для Render.com (опционально)
-- `.dockerignore` - файлы, исключаемые из Docker образа
+- 📁 Загрузка файлов с кодом через drag-and-drop или клик
+- 📄 Генерация PDF с сохранением форматирования кода
+- 🔍 Поддержка более 25 форматов файлов (py, js, ts, html, css, json и др.)
+- 🎨 Современный веб-интерфейс
+- ⚡ Работает на serverless-функциях Vercel
+- 🌐 Доступно по HTTPS из любой точки мира
 
 ## Поддерживаемые форматы
 
-txt, py, js, ts, java, c, cpp, h, hpp, cs, go, rs, rb, php, sh, bash, html, css, json, xml, md, sql
+Python, JavaScript, TypeScript, JSX, TSX, HTML, CSS, JSON, XML, YAML, Markdown, TXT, Shell scripts, Ruby, PHP, Go, Rust, Swift, Kotlin, Java, C, C++, C#, SQL, R, Lua, Perl и другие.
+
+## Развертывание на Vercel
+
+### Способ 1: Через Vercel CLI (рекомендуется)
+
+1. Установите Vercel CLI:
+```bash
+npm install -g vercel
+```
+
+2. Войдите в аккаунт Vercel:
+```bash
+vercel login
+```
+
+3. В директории проекта выполните:
+```bash
+vercel
+```
+
+4. Следуйте инструкциям в терминале.
+
+### Способ 2: Через GitHub
+
+1. Запушьте код в репозиторий GitHub
+2. Зайдите на [vercel.com](https://vercel.com)
+3. Нажмите "New Project"
+4. Импортируйте ваш репозиторий
+5. Vercel автоматически определит настройки и развернет приложение
+
+## Структура проекта
+
+```
+code-to-pdf-app/
+├── api/
+│   └── app.py          # Serverless функция Flask
+├── public/
+│   └── index.html      # Веб-интерфейс
+├── vercel.json         # Конфигурация Vercel
+└── requirements.txt    # Python зависимости
+```
+
+## Локальная разработка
+
+Для тестирования локально используйте Vercel CLI:
+
+```bash
+vercel dev
+```
+
+Приложение будет доступно по адресу http://localhost:3000
+
+## Как это работает
+
+1. Пользователь загружает файл с кодом через веб-интерфейс
+2. Файл отправляется на serverless функцию `/api/convert`
+3. Функция читает содержимое файла и генерирует PDF с помощью библиотеки ReportLab
+4. PDF возвращается пользователю для скачивания
+
+## Ограничения Vercel
+
+- Максимальный размер файла: 4.5 MB (для Hobby плана)
+- Таймаут функции: 10 секунд (Hobby), 60 секунд (Pro)
+- Для больших файлов рекомендуется использовать Pro план
+
+## Технологии
+
+- **Frontend**: HTML5, CSS3, Vanilla JavaScript
+- **Backend**: Python, Flask (адаптированный для Vercel)
+- **PDF генерация**: ReportLab
+- **Хостинг**: Vercel Serverless Functions
+
+## Лицензия
+
+MIT
