@@ -1,9 +1,4 @@
 ```
-# Logs and temp files
-*.log
-*.tmp
-*.swp
-
 # Dependencies
 .venv/
 venv/
@@ -12,26 +7,34 @@ __pycache__/
 *.pyo
 *.pyd
 
+# Build/dist
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
+
 # Environment
 .env
 .env.local
 *.env.*
 
-# Coverage reports
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage
 .coverage
 coverage/
 htmlcov/
 
-# IDE files
-.vscode/
-.idea/
-
-# OS generated files
-.DS_Store
-Thumbs.db
-
-# Build artifacts
-dist/
-build/
-*.pdf
+# Docker (since we have Dockerfile)
+.dockerignore
 ```
