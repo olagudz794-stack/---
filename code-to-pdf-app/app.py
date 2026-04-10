@@ -109,4 +109,6 @@ def upload_file():
 
 if __name__ == '__main__':
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-    app.run(debug=False, host='0.0.0.0', port=5000, use_reloader=False)
+    # Use PORT environment variable for Render.com (defaults to 8080)
+    port = int(os.environ.get('PORT', 8080))
+    app.run(debug=False, host='0.0.0.0', port=port, use_reloader=False)
