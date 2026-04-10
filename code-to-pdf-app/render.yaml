@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: code-to-pdf-converter
-    env: python
-    buildCommand: ""
-    startCommand: python app.py
-    envVars:
-      - key: PORT
-        value: 8080
